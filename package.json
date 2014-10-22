@@ -1,9 +1,9 @@
 {
-  "name": "angular-seed",
+  "name": "presenter",
   "private": true,
   "version": "0.0.0",
-  "description": "A starter project for AngularJS",
-  "repository": "https://github.com/angular/angular-seed",
+  "description": "Test project for Yandex",
+  "repository": "https://github.com/darkrocks/presenter",
   "license": "MIT",
   "devDependencies": {
     "karma": "~0.10",
