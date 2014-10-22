@@ -1,14 +1,19 @@
 'use strict';
 
-angular.module('presenter.view1', ['ngRoute'])
+angular.module('presenter.viewer', ['ngRoute'])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view1', {
-    templateUrl: 'view1/view1.html',
-    controller: 'View1Ctrl'
+.config(['$routeProvider', function ($routeProvider) {
+  $routeProvider.when('/', {
+    templateUrl: 'viewer/viewer.html',
+    controller: 'ViewerCtrl'
+  });
+
+  $routeProvider.when('/viewer', {
+    templateUrl: 'viewer/viewer.html',
+    controller: 'ViewerCtrl'
   });
 }])
 
-.controller('View1Ctrl', [function() {
+.controller('ViewerCtrl', [function() {
 
 }]);

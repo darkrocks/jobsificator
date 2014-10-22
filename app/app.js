@@ -3,11 +3,11 @@
 // Declare app level module which depends on views, and components
 angular.module('presenter', [
   'ngRoute',
-  'presenter.view1',
+  'presenter.viewer',
   'presenter.view2',
   'presenter.version',
-  'presenter.top-menu-directive'
+  'presenter.top-menu'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
+  $routeProvider.otherwise({redirectTo: '/'});
 }]);
