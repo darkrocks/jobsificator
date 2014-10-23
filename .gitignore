@@ -5,3 +5,4 @@ third_party_components/
 tmp
 .DS_Store
 .idea
+npm-debug.log
