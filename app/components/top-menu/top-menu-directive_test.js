@@ -2,7 +2,7 @@
 
 describe('presenter.top-menu module', function () {
   beforeEach(module('presenter.top-menu'));
-  beforeEach(module('inlinetemplates'));
+  beforeEach(module('templates'));
 
   describe('top-menu directive', function () {
     it('should contail navbar element', function () {

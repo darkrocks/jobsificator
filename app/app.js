@@ -6,7 +6,8 @@ angular.module('presenter', [
   'presenter.viewer',
   'presenter.view2',
   'presenter.version',
-  'presenter.top-menu'
+  'presenter.top-menu',
+  'presenter.add-presentation-modal'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/'});

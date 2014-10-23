@@ -37,13 +37,7 @@ module.exports = function(config){
 
     ngHtml2JsPreprocessor: {
       stripPrefix: 'app/',
-      //cacheIdFromPath: function (filepath) {
-      //  return 'app' + filepath;
-      //},
-      moduleName: "inlinetemplates"
+      moduleName: "templates"
     },
-
-
-
   });
 };

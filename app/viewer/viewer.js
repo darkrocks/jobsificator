@@ -14,6 +14,15 @@ angular.module('presenter.viewer', ['ngRoute'])
   });
 }])
 
-.controller('ViewerCtrl', [function() {
+.controller('ViewerCtrl', ['$scope', function ($scope) {
+  $scope.addPresentationModalVisible = 0;
+  $scope.addPresentationClick = function () {
+    $scope.addPresentationModalVisible = 1;
+  };
 
+  $scope.addPresentationModalClosed = function () {
+    $scope.$apply(function() {
+      $scope.addPresentationModalVisible = 0;
+    });
+  };
 }]);
