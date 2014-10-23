@@ -1,8 +1,8 @@
 ﻿'use strict';
 
-angular.module('presenter.add-presentation-modal.add-presentation-modal-directive', ['ui.grid'])
+angular.module('presenter.add-presentation-modal.add-presentation-modal-directive', ['ui.grid', 'presenter.data'])
   .constant("$", window.jQuery)
-  .directive('addPresentationModal', ['$timeout', function ($timeout) {
+  .directive('addPresentationModal', ['$timeout', '$http','$log', 'presentationsData', function ($timeout, $http, $log, presentationsData) {
     return {
       restrict: 'E',
       scope: {
@@ -20,18 +20,19 @@ angular.module('presenter.add-presentation-modal.add-presentation-modal-directiv
           }
         }, true);
 
-        $timeout(function() {
+        $timeout(function () {
           $(modalId).on('hidden.bs.modal', function (e) {
             scope.closed();
           });
         });
 
-        scope.myData = [{ name: "Moroni", age: 50 },
-                    { name: "Tiancum", age: 43 },
-                    { name: "Jacob", age: 27 },
-                    { name: "Nephi", age: 29 },
-                    { name: "Enos", age: 34 }];
-        scope.gridOptions = { data: 'myData' };
+        presentationsData.get().then(function(presentations) {
+          scope.presentations = presentations;
+        }, function(reason) {
+          $log.error(reason);
+        });
+
+          scope.gridOptions = { data: 'presentations' };
       }
     };
   }]);
