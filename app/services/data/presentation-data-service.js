@@ -24,6 +24,14 @@ angular.module('presenter.data', [])
       }
 
       return deferred.promise;
+    },
+    normalizeEntity: function(entity) {
+      return {
+        id: entity.id,
+        name: entity.name,
+        slides: entity.slides,
+        content: entity.content
+      };
     }
   };
 }]);

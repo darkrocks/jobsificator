@@ -12,6 +12,7 @@
     "angular-mocks": "~1.2.x",
     "html5-boilerplate": "~4.3.0",
 	"bootstrap": "3.2.x",
- "angular-ui-grid":"x"
+ "angular-ui-grid":"x",
+ "underscore": "1.7.0"
   }
 }

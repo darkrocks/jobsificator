@@ -5,10 +5,29 @@
     height: 300px;
 }
 
+.ui-grid-row-selected .ui-grid-cell {
+  background-color: #d9edf7 !important;
+}
+
 .ui-grid-top-panel {
   background: white;
 }
 
+.ui-grid-row-header-cell {
+background-color: #f3f3f3 !important;
+}
+
+.ui-grid-pinned-container.ui-grid-pinned-container-left .ui-grid-header-cell:last-child {
+border-color: rgb(212,212,212);
+}
+
+.ui-grid-pinned-container.ui-grid-pinned-container-left .ui-grid-cell:last-child {
+border-color: rgb(212,212,212);
+}
+
+.ui-grid-pinned-container.ui-grid-pinned-container-left .ui-grid-header-cell:last-child {
+border-color: rgb(212,212,212);
+}
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;

@@ -15,6 +15,8 @@ angular.module('presenter.viewer', ['ngRoute'])
 }])
 
 .controller('ViewerCtrl', ['$scope', function ($scope) {
+  $scope.selectedPresentations = [];
+
   $scope.addPresentationModalVisible = 0;
   $scope.addPresentationClick = function () {
     $scope.addPresentationModalVisible = 1;

@@ -1,16 +1,18 @@
 ﻿'use strict';
 
-angular.module('presenter.add-presentation-modal.add-presentation-modal-directive', ['ui.grid', 'presenter.data'])
-  .constant("$", window.jQuery)
-  .directive('addPresentationModal', ['$timeout', '$http','$log', 'presentationsData', function ($timeout, $http, $log, presentationsData) {
+angular.module('presenter.add-presentation-modal.add-presentation-modal-directive', ['ui.grid', 'ui.grid.selection', 'presenter.data'])
+  .directive('addPresentationModal', ['$timeout', '$http','$log', '_', 'presentationsData', function ($timeout, $http, $log, _, presentationsData) {
     return {
       restrict: 'E',
       scope: {
         visible: '=',
+        selectedPresentations: '=',
         closed: '&onClosed'
       },
       templateUrl: 'components/add-presentation-modal/add-presentation-modal-directive.html',
       link: function (scope, element, attrs) {
+        var selectedPresentationsDirty = scope.selectedPresentations || [];
+
         scope.modalId = 'add-presentation-modal' + (new Date().getTime());
 
         var modalId = '#' + scope.modalId;
@@ -26,13 +28,48 @@ angular.module('presenter.add-presentation-modal.add-presentation-modal-directiv
           });
         });
 
-        presentationsData.get().then(function(presentations) {
-          scope.presentations = presentations;
-        }, function(reason) {
+        scope.okClicked = function() {
+          scope.selectedPresentations = selectedPresentationsDirty;
+        };
+
+        scope.cancelClicked = function () {
+          selectedPresentationsDirty = scope.selectedPresentations;
+        };
+
+        scope.gridOptions = {
+          enableRowSelection: true,
+          enableRowHeaderSelection: true,
+          enableSelectAll: true,
+          multiSelect : true
+        };
+
+        scope.gridOptions.columnDefs = [
+          { name: 'id', visible: false},
+          { name: 'name' },
+          { name: 'slides' },
+          { name: 'content', visible: false }
+        ];
+
+        scope.gridOptions.onRegisterApi = function (gridApi) {
+          scope.gridApi = gridApi;
+          gridApi.selection.on.rowSelectionChanged(scope, function (row) {
+            var entity = presentationsData.normalizeEntity(row.entity);
+            var found = _.findWhere(selectedPresentationsDirty, { id: entity.id });
+            if (!found && row.isSelected) {
+              selectedPresentationsDirty.push(entity);
+            }
+            else if (found && !row.isSelected) {
+              selectedPresentationsDirty.slice(entity);
+            }
+          });
+        };
+
+        presentationsData.get().then(function (presentations) {
+          scope.gridOptions.data = presentations;
+        }, function (reason) {
           $log.error(reason);
         });
 
-          scope.gridOptions = { data: 'presentations' };
       }
     };
   }]);

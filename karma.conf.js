@@ -8,8 +8,9 @@ module.exports = function(config){
     files: [
       'app/third_party_components/jquery/dist/jquery.js',
       'app/third_party_components/bootstrap/dist/js/bootstrap.js',
+      'app/third_party_components/underscore/underscore-min.js',
       'app/third_party_components/angular/angular.js',
-            'app/third_party_components/angular-ui-grid/ui-grid.js',
+      'app/third_party_components/angular-ui-grid/ui-grid.js',
       'app/third_party_components/angular-route/angular-route.js',
       'app/third_party_components/angular-mocks/angular-mocks.js',
       'app/components/**/*.js',

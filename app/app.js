@@ -8,7 +8,9 @@ angular.module('presenter', [
   'presenter.version',
   'presenter.top-menu',
   'presenter.add-presentation-modal'
-]).
-config(['$routeProvider', function($routeProvider) {
+])
+.constant("$", window.jQuery)
+.constant("_", window._)
+.config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/'});
 }]);
