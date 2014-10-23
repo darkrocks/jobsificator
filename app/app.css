@@ -1,4 +1,13 @@
 /* app css stylesheet */
+.gridStyle {
+    border: 0px solid rgb(212,212,212);
+    width: 566px; 
+    height: 300px;
+}
+
+.ui-grid-top-panel {
+  background: white;
+}
 
 .menu {
   list-style: none;

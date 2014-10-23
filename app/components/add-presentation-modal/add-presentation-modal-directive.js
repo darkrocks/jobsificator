@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-angular.module('presenter.add-presentation-modal.add-presentation-modal-directive', [])
+angular.module('presenter.add-presentation-modal.add-presentation-modal-directive', ['ui.grid'])
   .constant("$", window.jQuery)
   .directive('addPresentationModal', ['$timeout', function ($timeout) {
     return {
@@ -24,7 +24,14 @@ angular.module('presenter.add-presentation-modal.add-presentation-modal-directiv
           $(modalId).on('hidden.bs.modal', function (e) {
             scope.closed();
           });
-        });        
+        });
+
+        scope.myData = [{ name: "Moroni", age: 50 },
+                    { name: "Tiancum", age: 43 },
+                    { name: "Jacob", age: 27 },
+                    { name: "Nephi", age: 29 },
+                    { name: "Enos", age: 34 }];
+        scope.gridOptions = { data: 'myData' };
       }
     };
   }]);
