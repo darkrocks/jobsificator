@@ -1,10 +1,18 @@
 /* app css stylesheet */
+.main-wrapper {
+  margin-top: 62px;
+}
 .gridStyle {
     border: 0px solid rgb(212,212,212);
     width: 566px; 
     height: 300px;
 }
 
+.svgcontent {
+  border-width: 1px;
+  border-style: solid;
+  border-color: lightgray;
+}
 .ui-grid-row-selected .ui-grid-cell {
   background-color: #d9edf7 !important;
 }
