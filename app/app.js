@@ -7,7 +7,8 @@ angular.module('presenter', [
   'presenter.view2',
   'presenter.version',
   'presenter.top-menu',
-  'presenter.add-presentation-modal'
+  'presenter.add-presentation-modal',
+	'presenter.presentation-viewer'
 ])
 .constant("$", window.jQuery)
 .constant("_", window._)

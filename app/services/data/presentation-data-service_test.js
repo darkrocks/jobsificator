@@ -27,7 +27,7 @@ describe('presenter.data module', function () {
 
     it('should fetch api/presentations', function () {
       $httpBackend.expectGET('/api/presentations');
-      presentationsDataService.get();
+      presentationsDataService.getAll();
       $httpBackend.flush();
     });
 

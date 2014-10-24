@@ -15,9 +15,18 @@ angular.module('presenter.viewer', ['ngRoute'])
 }])
 
 .controller('ViewerCtrl', ['$scope', function ($scope) {
-  $scope.selectedPresentations = [];
+	$scope.selectedPresentations = [];
+	$scope.addPresentationModalVisible = 0;
+  $scope.presentation = null;
+	
+  $scope.$watch('selectedPresentations', function (newValue, oldValue) {
+	  if (newValue.length > 0) {
+	  	$scope.presentation = newValue[0];
+	  } else {
+		  $scope.presentation = null;
+	  }
+  }, true);
 
-  $scope.addPresentationModalVisible = 0;
   $scope.addPresentationClick = function () {
     $scope.addPresentationModalVisible = 1;
   };

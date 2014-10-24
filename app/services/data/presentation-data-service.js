@@ -6,7 +6,7 @@ angular.module('presenter.data', [])
     var presentations;
 
   return {
-    get: function () {
+    getAll: function () {
       var deferred = $q.defer();
 
       if (!presentations) {
@@ -25,12 +25,13 @@ angular.module('presenter.data', [])
 
       return deferred.promise;
     },
+    
     normalizeEntity: function(entity) {
       return {
         id: entity.id,
         name: entity.name,
         slides: entity.slides,
-        content: entity.content
+        slidesCount: entity.slidesCount
       };
     }
   };

@@ -1,9 +1,5 @@
 <top-menu on-add-presentation-click="addPresentationClick()"></top-menu>
-<div class ="container">
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <add-presentation-modal visible="addPresentationModalVisible" selectedpresentations="selectedPresentations" on-closed="addPresentationModalClosed()"></add-presentation-modal>
+<div class ="container-fluid">
+	<presentation-viewer presentation="presentation"></presentation-viewer>
+	<add-presentation-modal visible="addPresentationModalVisible" selected-presentations="selectedPresentations" on-closed="addPresentationModalClosed()"></add-presentation-modal>
 </div>
