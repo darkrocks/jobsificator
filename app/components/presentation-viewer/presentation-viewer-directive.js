@@ -37,9 +37,17 @@ angular.module('presenter.presentation-viewer.presentation-viewer-directive', []
 	        setSlide();
 	      };
 
+	      scope.setCurrentSlide = function (slideNumber) {
+	        if (slideNumber < 1 || slideNumber > scope.presentation.slides.length) {
+	          return;
+	        }
 
-	      fitSvgSize();
-	      $(window).resize(fitSvgSize);
+	        scope.currentSlideNumber = slideNumber;
+	        setSlide();
+	      };
+
+	      fitSizes();
+	      $(window).resize(fitSizes);
 
 	      scope.$watch("presentation", function (n, o) {
 	        if (scope.presentation && scope.presentation.slides && scope.currentSlideNumber <= scope.presentation.slides.length && scope.currentSlideNumber >= 1) {
@@ -61,7 +69,8 @@ angular.module('presenter.presentation-viewer.presentation-viewer-directive', []
 	      setSlide();
 
 
-	      function fitSvgSize() {
+	      function fitSizes() {
+         // svg
 	        var maxWidth = $(window).width() - horisontalIndent;
 	        var maxHeight = $(window).height() - virticalIndent;
 
@@ -75,10 +84,14 @@ angular.module('presenter.presentation-viewer.presentation-viewer-directive', []
 
 	        $svg.attr('height', svgHeight);
 	        $svg.attr('width', svgWidth);
+
+	        // sidebar
+	        var $sidebar = $('.navigation-sidebar');
+	        $sidebar.height(svgHeight - 1);
 	      }
 
 	      function setSlide() {
-	        fitSvgSize();
+	        fitSizes();
 	        var $slideContent = $(scope.presentation.slides[scope.currentSlideNumber - 1]);
 	        $svg.html($slideContent.html());
 	      }
