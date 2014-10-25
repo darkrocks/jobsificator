@@ -14,18 +14,10 @@ angular.module('presenter.viewer', ['ngRoute'])
   });
 }])
 
-.controller('ViewerCtrl', ['$scope', function ($scope) {
+.controller('ViewerCtrl', ['$scope', '_', function ($scope, _) {
 	$scope.selectedPresentations = [];
 	$scope.addPresentationModalVisible = 0;
-  $scope.presentation = null;
-	
-  $scope.$watch('selectedPresentations', function (newValue, oldValue) {
-	  if (newValue.length > 0) {
-	  	$scope.presentation = newValue[0];
-	  } else {
-		  $scope.presentation = null;
-	  }
-  }, true);
+
 
   $scope.addPresentationClick = function () {
     $scope.addPresentationModalVisible = 1;
@@ -35,5 +27,9 @@ angular.module('presenter.viewer', ['ngRoute'])
     $scope.$apply(function() {
       $scope.addPresentationModalVisible = 0;
     });
+  };
+
+  $scope.presentationViewerClosing = function(id) {
+    $scope.selectedPresentations = _.filter($scope.selectedPresentations, function (presentation) { return presentation.id != id; });
   };
 }]);

@@ -2,22 +2,24 @@
 'use strict';
 
 angular.module('presenter.presentation-viewer.presentation-viewer-directive', [])
-.constant('horisontalIndent', 300)
+.constant('horisontalIndent', 330)
 .constant('virticalIndent', 130)
 .constant('svgAspectRatio', 1.7774)
 
-	.directive('presentationViewer', ['horisontalIndent', 'virticalIndent', 'svgAspectRatio', function (horisontalIndent, virticalIndent, svgAspectRatio) {
+	.directive('presentationViewer', ['$sce', 'horisontalIndent', 'virticalIndent', 'svgAspectRatio', function ($sce, horisontalIndent, virticalIndent, svgAspectRatio) {
 
 	  return {
 	    restrict: 'E',
 	    templateUrl: 'components/presentation-viewer/presentation-viewer-directive.html',
 	    scope: {
 	      presentation: '=',
-	      viewerHeight: '='
+       close: '=onClose'
 	    },
 	    link: function (scope, element, attrs) {
 	      scope.htmls = ['<p>one</p>', '<p>due</p>'];
-
+	      scope.toTrusted = function(html) {
+	       return $sce.trustAsHtml(html);
+	      };
 	      scope.currentSlideNumber = 1;
 	      var $svg = $(element).find('svg');
 
@@ -60,7 +62,7 @@ angular.module('presenter.presentation-viewer.presentation-viewer-directive', []
 	      if (!scope.presentation) {
 	        return;
 	      }
-	      if (!scope.presentation || !scope.presentation.slides || !scope.presentation.slides.count) {
+	      if (!scope.presentation || !scope.presentation.slides || !scope.presentation.slides.length) {
 	        throw Error('Wrong presentation format');
 	      }
 
@@ -89,7 +91,9 @@ angular.module('presenter.presentation-viewer.presentation-viewer-directive', []
 
 	        // sidebar
 	        var $sidebar = $('.navigation-sidebar');
-	        $sidebar.height(svgHeight - 1);
+	        $sidebar.height(svgHeight + 43);
+
+	        $(element).find('.presentation-viewer-navbar').width(svgWidth - 2);
 	      }
 
 	      function setSlide() {

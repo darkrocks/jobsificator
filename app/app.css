@@ -1,18 +1,34 @@
 /* app css stylesheet */
+body {
+  background-color: grey;
+}
 .main-wrapper {
   margin-top: 62px;
 }
 
+.presentation-viewer-navbar {
+  margin-top: -15px;
+  padding-top: 8px;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+
+
 .presentation-viewer .navigation-sidebar {
   float: left;
   width: 238px;
-  margin-right: 15px;
+  margin-right: 10px;
   margin-bottom: 15px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: lightgrey;
+  overflow: auto;
+  padding-left: 19px;
 }
 
+.presentation-viewer .navbar-right {
+  margin-right: 5px !important;
+}
+.presentation-viewer .control-pannel {
+  /*margin-left: 253px;*/
+}
 .gridStyle {
   border: 0px solid rgb(212,212,212);
   width: 566px;
@@ -23,8 +39,17 @@
   border-width: 1px;
   border-style: solid;
   border-color: lightgray;
+  margin-bottom: 6px;
 }
 
+.svgcontent.presentation-thumbnail {
+  cursor: pointer;
+}
+
+.svgcontent.presentation-thumbnail.active, .svgcontent.presentation-thumbnail:hover {
+  border: 1px solid #3071a9; 
+  border-radius: 4px; 
+}
 .ui-grid-row-selected .ui-grid-cell {
   background-color: #d9edf7 !important;
 }
