@@ -6,7 +6,8 @@ angular.module('presenter.top-menu.top-menu-directive', [])
     restrict: 'E',
     templateUrl: 'components/top-menu/top-menu-directive.html',
     scope: {
-      'addPresentationClick': '&onAddPresentationClick'
+      'addPresentationClick': '&onAddPresentationClick',
+      'closeAllClick': '&onCloseAllClick'
     }
 };
 }]);

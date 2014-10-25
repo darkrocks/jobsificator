@@ -1,5 +1,8 @@
-<top-menu on-add-presentation-click="addPresentationClick()"></top-menu>
+<top-menu on-add-presentation-click="addPresentationClick()" on-close-all-click="closeAllPresentationsClick()"></top-menu>
 <div class="container-fluid main-wrapper">
+  <div ng-show="selectedPresentations.length==0" class="presentation-not-selected-container">
+    <h4>Presentation not selected</h4>
+  </div>
   <div ng-repeat="presentation in selectedPresentations">
     <div class="panel panel-default">
       <div class="panel-body">
@@ -8,4 +11,20 @@
     </div>
   </div>
   <add-presentation-modal visible="addPresentationModalVisible" selected-presentations="selectedPresentations" on-closed="addPresentationModalClosed()"></add-presentation-modal>
+  <div class="modal fade" id='aboutModal' tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="myModalLabel">About</h4>
+        </div>
+        <div class="modal-body">
+          Hi. My name is Dmitriy Kazinov. This is my test project for Yandex
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" ng-click="okClicked()">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

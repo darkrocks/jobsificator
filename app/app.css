@@ -3,6 +3,12 @@ body {
   background-color: grey;
 }
 
+
+.presentation-not-selected-container {
+  text-align: center;
+margin-top: 400px;
+color: rgb(217, 217, 217);
+}
 .hide-on-fullscreen {
   display: flex;
   visibility: collapse;
