@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('presenter.presentation-viewer.presentation-viewer-directive', [])
-.constant('horisontalIndent', 330)
+.constant('horisontalIndent', 345)
 .constant('virticalIndent', 130)
 .constant('svgAspectRatio', 1.7774)
 
@@ -81,9 +81,9 @@ angular.module('presenter.presentation-viewer.presentation-viewer-directive', []
 	        var svgWidth = maxWidth;
 	        var svgHeight = maxHeight;
 	        if (maxWidth / maxHeight > svgAspectRatio) {
-	          svgWidth = maxHeight * svgAspectRatio;
+	          svgWidth = (maxHeight * svgAspectRatio);
 	        } else {
-	          svgHeight = maxWidth / svgAspectRatio;
+	          svgHeight = (maxWidth / svgAspectRatio);
 	        }
 
 	        $svg.attr('height', svgHeight);

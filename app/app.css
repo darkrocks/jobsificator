@@ -13,6 +13,13 @@ body {
   margin-bottom: 0;
 }
 
+.presentation-viewer-navbar .btn-group, .presentation-viewer-navbar .presentation-name-container {
+  float: left;
+}
+
+.presentation-viewer-navbar .presentation-name-container {
+ margin-left: 19px;
+}
 
 .presentation-viewer .navigation-sidebar {
   float: left;
