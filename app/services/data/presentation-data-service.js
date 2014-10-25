@@ -6,19 +6,13 @@ angular.module('presenter.data', [])
     var presentations;
 
    function normalizeEntities(rawData) {
-      return _.map(rawData, function(rawPresentation) {
-        var presentation = {
-          id: rawPresentation.id,
-          name: rawPresentation.name,
-          slidesCount: rawPresentation.slidesCount
-        };
-
-        presentation.slides = _.map(rawPresentation.slides, function(rawSlide) {
-          return rawSlide;
-        });
-
-        return presentation;
-      });
+     return _.filter(rawData, function (rawPresentation) {
+       if (!rawPresentation || !rawPresentation.slides || !rawPresentation.slides.length) {
+         console.warn('Wrong presentation format');
+         return false;
+       }
+       return true;
+     });
     }
 
   return {

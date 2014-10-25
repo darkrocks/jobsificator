@@ -46,7 +46,7 @@ angular.module('presenter.add-presentation-modal.add-presentation-modal-directiv
         };
 
         scope.cancelClicked = function () {
-          selectedPresentationsDirty = scope.selectedPresentations;
+          selectedPresentationsDirty = angular.copy(scope.selectedPresentations);
         };
 
         scope.gridOptions = {
@@ -89,7 +89,7 @@ angular.module('presenter.add-presentation-modal.add-presentation-modal-directiv
               selectedPresentationsDirty.push(entity);
             }
             else if (found && !row.isSelected) {
-              selectedPresentationsDirty.slice(entity);
+              selectedPresentationsDirty = _.filter(selectedPresentationsDirty, function (selectedPresentation) { return selectedPresentation.id != entity.id; });
             }
           });
         };
