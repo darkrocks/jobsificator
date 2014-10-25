@@ -1,7 +1,13 @@
 ﻿<div class="presentation-viewer">
   <div>
     <div class="navigation-sidebar">
-      some text
+      <svg class="svgcontent" width="238" height="134" overflow="visible" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 853 480" ng-repeat="slide in presentation.slides | trustifyHtml" ng-bind-html="slide">
+      </svg>
+      
+      <!--<ul>
+        <li ng-repeat="h in htmls" ng-bind-html-unsafe="h">
+        </li>
+      </ul>-->
     </div>
     <div style="float: left;">
       <svg class="svgcontent" width="853" height="480" overflow="visible" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 853 480">
@@ -18,7 +24,7 @@
         Slide {{currentSlideNumber}} <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
-        <li ng-repeat="slide in presentation.slides"><a href="" ng-click="setCurrentSlide($index + 1)">Slide {{$index + 1}}</a></li>
+        <li ng-repeat="slide in presentation.slides" ng-class="{active: (($index + 1)==currentSlideNumber)}"><a href="" ng-click="setCurrentSlide($index + 1)">Slide {{$index + 1}}</a></li>
       </ul>
     </div>
   </div>

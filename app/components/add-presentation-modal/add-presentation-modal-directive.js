@@ -64,7 +64,7 @@ angular.module('presenter.add-presentation-modal.add-presentation-modal-directiv
   			scope.gridOptions.onRegisterApi = function (gridApi) {
   				scope.gridApi = gridApi;
   				gridApi.selection.on.rowSelectionChanged(scope, function (row) {
-  					var entity = presentationsData.normalizeEntity(row.entity);
+  					var entity = normalizeEntity(row.entity);
   					var found = _.findWhere(selectedPresentationsDirty, { id: entity.id });
   					if (!found && row.isSelected) {
   						selectedPresentationsDirty.push(entity);
@@ -80,6 +80,15 @@ angular.module('presenter.add-presentation-modal.add-presentation-modal-directiv
   			}, function (reason) {
   				$log.error(reason);
   			});
+
+  		  function normalizeEntity(entity) {
+  		    return {
+  		      id: entity.id,
+  		      name: entity.name,
+  		      slides: entity.slides,
+  		      slidesCount: entity.slidesCount
+  		    };
+  		  }
 
   		}
   	};

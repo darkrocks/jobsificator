@@ -16,6 +16,8 @@ angular.module('presenter.presentation-viewer.presentation-viewer-directive', []
 	      viewerHeight: '='
 	    },
 	    link: function (scope, element, attrs) {
+	      scope.htmls = ['<p>one</p>', '<p>due</p>'];
+
 	      scope.currentSlideNumber = 1;
 	      var $svg = $(element).find('svg');
 
@@ -92,10 +94,11 @@ angular.module('presenter.presentation-viewer.presentation-viewer-directive', []
 
 	      function setSlide() {
 	        fitSizes();
-	        var $slideContent = $(scope.presentation.slides[scope.currentSlideNumber - 1]);
-	        $svg.html($slideContent.html());
+	        $svg.html(scope.presentation.slides[scope.currentSlideNumber - 1]);
 	      }
 
 	    }
+
+
 	  };
 	}]);
