@@ -1,14 +1,14 @@
 ﻿'use strict';
 
-describe('presenter.top-menu module', function () {
+describe('presenter.top-menu module', function() {
   beforeEach(module('presenter.top-menu'));
   beforeEach(module('templates'));
 
-  describe('top-menu directive', function () {
-    it('should contail navbar element', function () {
+  describe('top-menu directive', function() {
+    it('should contail navbar element', function() {
 
-      inject(function ($compile, $rootScope) {
-        var element = angular.element( '<top-menu></top-menu>');
+      inject(function($compile, $rootScope) {
+        var element = angular.element('<top-menu></top-menu>');
         $compile(element)($rootScope);
         $rootScope.$digest();
 

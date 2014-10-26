@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-describe('presenter.add-presentation-modal module', function () {
+describe('presenter.add-presentation-modal module', function() {
   var $compile;
   var $rootScope;
   var $httpBackend;
@@ -10,7 +10,7 @@ describe('presenter.add-presentation-modal module', function () {
 
   beforeEach(module('presenter.add-presentation-modal'));
   beforeEach(module('templates'));
-  beforeEach(inject(function (_$compile_, _$rootScope_, _$httpBackend_) {
+  beforeEach(inject(function(_$compile_, _$rootScope_, _$httpBackend_) {
     $httpBackend = _$httpBackend_;
     $compile = _$compile_;
     $rootScope = _$rootScope_;
@@ -22,22 +22,22 @@ describe('presenter.add-presentation-modal module', function () {
     $rootScope.$digest();
   });
 
-  describe('add-presentation-modal directive', function () {
-    it('should contain div.modal element', function () {
+  describe('add-presentation-modal directive', function() {
+    it('should contain div.modal element', function() {
       var as = element.find('div.modal');
       expect(as.length).not.toBe(0);
     });
 
-  //  it('should be hide when visible=0', function () {
-  //    scope = $rootScope.$new();
-  //    scope.vis = 0;
-  //    element = $compile('<add-presentation-modal visible="vis"></add-presentation-modal>')(scope);
-  //    scope.$apply();
-  //    console.log(element);
+    //  it('should be hide when visible=0', function () {
+    //    scope = $rootScope.$new();
+    //    scope.vis = 0;
+    //    element = $compile('<add-presentation-modal visible="vis"></add-presentation-modal>')(scope);
+    //    scope.$apply();
+    //    console.log(element);
 
-  //    var div = element.find('div.modal');
-  //    expect(div.css('display')).toBe('none');
-  //  });
+    //    var div = element.find('div.modal');
+    //    expect(div.css('display')).toBe('none');
+    //  });
   });
 
 

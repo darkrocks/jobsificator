@@ -6,13 +6,13 @@ describe('presenter.viewer module', function() {
   var $controller;
 
   beforeEach(module('presenter.viewer'));
-  beforeEach(inject(function (_$compile_, _$rootScope_, _$controller_) {
+  beforeEach(inject(function(_$compile_, _$rootScope_, _$controller_) {
     $compile = _$compile_;
     $rootScope = _$rootScope_;
     $controller = _$controller_;
   }));
 
-  describe('viewer controller', function(){
+  describe('viewer controller', function() {
 
     it('should ....', function() {
       //spec body

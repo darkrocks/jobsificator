@@ -1,5 +1,4 @@
-﻿
-<div data-presentation-id="{{presentation.id}}" class="presentation-viewer">
+﻿<div data-presentation-id="{{presentation.id}}" class="presentation-viewer">
   <div>
     <div style="float: left;">
       <div>
@@ -11,9 +10,7 @@
             <div class="svg-wrapper" ng-class="{active: (($index + 1)==currentSlideNumber)}" ng-click="setCurrentSlide($index + 1)" ng-bind-html="toTrusted(slide)">
             </div>
           </div>
-
         </div>
-
       </div>
     </div>
     <div style="float: left;">
@@ -38,7 +35,6 @@
     </div>
   </div>
   <div style="clear: both;"></div>
-
 </div>
 
 <div class="btn-group fullscreen-control-panel">

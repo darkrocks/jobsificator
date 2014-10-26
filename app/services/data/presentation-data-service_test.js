@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-describe('presenter.data module', function () {
+describe('presenter.data module', function() {
   var $httpBackend;
   var $rootScope;
   var requestHandler;
@@ -10,22 +10,22 @@ describe('presenter.data module', function () {
     $provide.constant("dataUrls", { presentations: '/api/presentations' });
   }));
 
-  beforeEach(inject(function (_$httpBackend_, _$rootScope_, presentationsData) {
+  beforeEach(inject(function(_$httpBackend_, _$rootScope_, presentationsData) {
     $httpBackend = _$httpBackend_;
     $rootScope = _$rootScope_;
     requestHandler = $httpBackend.when('GET', '/api/presentations')
-                       .respond({ userId: 'userX' }, { 'A-Token': 'xxx' });
+      .respond({ userId: 'userX' }, { 'A-Token': 'xxx' });
     presentationsDataService = presentationsData;
   }));
 
-  afterEach(function () {
+  afterEach(function() {
     $httpBackend.verifyNoOutstandingExpectation();
     $httpBackend.verifyNoOutstandingRequest();
   });
 
-  describe('presentationsData service', function () {
+  describe('presentationsData service', function() {
 
-    it('should fetch api/presentations', function () {
+    it('should fetch api/presentations', function() {
       $httpBackend.expectGET('/api/presentations');
       presentationsDataService.getAll();
       $httpBackend.flush();
