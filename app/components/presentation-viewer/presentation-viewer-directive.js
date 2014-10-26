@@ -40,15 +40,6 @@ angular.module('presenter.presentation-viewer.presentation-viewer-directive', []
             if (scope.presentation && scope.presentation.slides && scope.currentSlideNumber <= scope.presentation.slides.length && scope.currentSlideNumber >= 1) {
               setSlide();
             }
-
-            $timeout(function() {
-              // fit side navbar canvases after rendering
-              var $navSvgs = $navigationSidebar.find('svg');
-              $navSvgs.attr('class', function(index, classNames) {
-                return 'svgcontent presentation-thumbnail';
-              });
-              $navSvgs.css('width', sideNavbarWidth + 'px').css('height', sideNavbarHeight + 'px').attr('width', sideNavbarWidth).attr('height', sideNavbarHeight);
-            });
           }, true);
 
           if (!scope.presentation) {
@@ -254,6 +245,15 @@ angular.module('presenter.presentation-viewer.presentation-viewer-directive', []
             } else {
               fitSize();
             }
+
+            $timeout(function () {
+              // fit side navbar canvases after rendering
+              var $navSvgs = $navigationSidebar.find('svg');
+              $navSvgs.attr('class', function (index, classNames) {
+                return 'svgcontent presentation-thumbnail';
+              });
+              $navSvgs.css('width', sideNavbarWidth + 'px').css('height', sideNavbarHeight + 'px').attr('width', sideNavbarWidth).attr('height', sideNavbarHeight);
+            });
           }
 
         }
