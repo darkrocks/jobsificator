@@ -14,7 +14,7 @@ module.exports = function(config){
       'app/third_party_components/angular-route/angular-route.js',
       'app/third_party_components/angular-mocks/angular-mocks.js',
       'app/components/**/*.js',
-      'app/view*/**/*.js',
+      'app/viewer/**/*.js',
       'app/services/**/*.js',
       "app/components/**/*.html"
     ],
