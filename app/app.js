@@ -11,7 +11,8 @@ angular.module('jobsificator', [
   .constant("$", window.jQuery)
   .constant("_", window._)
   .config([
-    '$routeProvider', function($routeProvider) {
+    '$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
       $routeProvider.otherwise({ redirectTo: '/' });
-    }
+    $locationProvider.html5Mode(true);
+  }
   ]);
