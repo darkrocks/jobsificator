@@ -1,5 +1,5 @@
 ﻿'use strict';
 
-angular.module('presenter.top-menu', [
-  'presenter.top-menu.top-menu-directive'
+angular.module('jobsificator.top-menu', [
+  'jobsificator.top-menu.top-menu-directive'
 ]);

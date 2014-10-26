@@ -1,7 +1,7 @@
 ﻿/// <reference path="presentation-viewer-directive.html" />
 'use strict';
 
-angular.module('presenter.presentation-viewer.presentation-viewer-directive', [])
+angular.module('jobsificator.presentation-viewer.presentation-viewer-directive', [])
   .constant('horisontalIndent', 345)
   .constant('virticalIndent', 145)
   .constant('fullscreenHorisontalIndent', 50)

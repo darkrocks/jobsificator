@@ -2,7 +2,7 @@
   "name": "jobsificator",
   "description": "Test project for Yandex",
   "version": "0.0.1",
-  "homepage":  "https://github.com/darkrocks/presenter",
+  "homepage":  "https://github.com/darkrocks/jobsificator",
   "license": "MIT",
   "private": true,
   "dependencies": {

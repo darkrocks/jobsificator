@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('presenter.viewer', ['ngRoute'])
+angular.module('jobsificator.viewer', ['ngRoute'])
   .constant("$", window.jQuery)
   .constant("_", window._)
   .config([

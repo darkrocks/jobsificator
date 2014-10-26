@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-describe('presenter.presentation-viewer module', function() {
+describe('jobsificator.presentation-viewer module', function() {
   var $compile;
   var $rootScope;
   var $httpBackend;
@@ -8,7 +8,7 @@ describe('presenter.presentation-viewer module', function() {
   var element;
   var scope;
 
-  beforeEach(module('presenter.presentation-viewer'));
+  beforeEach(module('jobsificator.presentation-viewer'));
   beforeEach(module('templates'));
   beforeEach(inject(function(_$compile_, _$rootScope_, _$httpBackend_) {
     $httpBackend = _$httpBackend_;
@@ -16,7 +16,7 @@ describe('presenter.presentation-viewer module', function() {
     $rootScope = _$rootScope_;
   }));
 
-  describe('presenter.presentation-viewer directive', function() {
+  describe('jobsificator.presentation-viewer directive', function() {
     it('should throw an error when presentation slides are undefined', function() {
       scope = $rootScope.$new();
       scope.presentation = {

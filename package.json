@@ -2,7 +2,7 @@
   "private": true,
   "version": "0.0.0-1",
   "description": "Test project for Yandex",
-  "repository": "https://github.com/darkrocks/presenter",
+  "repository": "https://github.com/darkrocks/jobsificator",
   "license": "MIT",
   "dependencies": {
     "bower": "^1.3.1",

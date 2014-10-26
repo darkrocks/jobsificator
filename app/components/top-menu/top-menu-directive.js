@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-angular.module('presenter.top-menu.top-menu-directive', [])
+angular.module('jobsificator.top-menu.top-menu-directive', [])
   .directive('topMenu', [
     function() {
       return {

@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-angular.module('presenter.add-presentation-modal.add-presentation-modal-directive', ['ui.grid', 'ui.grid.selection', 'presenter.data'])
+angular.module('jobsificator.add-presentation-modal.add-presentation-modal-directive', ['ui.grid', 'ui.grid.selection', 'jobsificator.data'])
   .directive('addPresentationModal', [
     '$timeout', '$http', '$log', '_', 'presentationsData', function($timeout, $http, $log, _, presentationsData) {
       return {

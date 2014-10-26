@@ -1,7 +1,7 @@
 ﻿'use strict';
 
-describe('presenter.top-menu module', function() {
-  beforeEach(module('presenter.top-menu'));
+describe('jobsificator.top-menu module', function() {
+  beforeEach(module('jobsificator.top-menu'));
   beforeEach(module('templates'));
 
   describe('top-menu directive', function() {

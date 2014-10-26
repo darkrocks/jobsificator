@@ -1,12 +1,12 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('presenter', [
+angular.module('jobsificator', [
     'ngRoute',
-    'presenter.viewer',
-    'presenter.top-menu',
-    'presenter.add-presentation-modal',
-    'presenter.presentation-viewer'
+    'jobsificator.viewer',
+    'jobsificator.top-menu',
+    'jobsificator.add-presentation-modal',
+    'jobsificator.presentation-viewer'
   ])
   .constant("$", window.jQuery)
   .constant("_", window._)

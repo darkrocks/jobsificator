@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-angular.module('presenter.data', [])
+angular.module('jobsificator.data', [])
   .constant("$", window.jQuery)
   .constant("_", window._)
   .constant("dataUrls", { presentations: '/api/presentations' })

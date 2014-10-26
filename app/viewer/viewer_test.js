@@ -1,11 +1,11 @@
 'use strict';
 
-describe('presenter.viewer module', function() {
+describe('jobsificator.viewer module', function() {
   var $compile;
   var $rootScope;
   var $controller;
 
-  beforeEach(module('presenter.viewer'));
+  beforeEach(module('jobsificator.viewer'));
   beforeEach(inject(function(_$compile_, _$rootScope_, _$controller_) {
     $compile = _$compile_;
     $rootScope = _$rootScope_;

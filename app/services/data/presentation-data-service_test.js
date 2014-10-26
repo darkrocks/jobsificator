@@ -1,12 +1,12 @@
 ﻿'use strict';
 
-describe('presenter.data module', function() {
+describe('jobsificator.data module', function() {
   var $httpBackend;
   var $rootScope;
   var requestHandler;
   var presentationsDataService;
 
-  beforeEach(module('presenter.data', function($provide) {
+  beforeEach(module('jobsificator.data', function($provide) {
     $provide.constant("dataUrls", { presentations: '/api/presentations' });
   }));
 

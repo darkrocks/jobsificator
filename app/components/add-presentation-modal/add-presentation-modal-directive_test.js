@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-describe('presenter.add-presentation-modal module', function() {
+describe('jobsificator.add-presentation-modal module', function() {
   var $compile;
   var $rootScope;
   var $httpBackend;
@@ -8,7 +8,7 @@ describe('presenter.add-presentation-modal module', function() {
   var element;
   var scope;
 
-  beforeEach(module('presenter.add-presentation-modal'));
+  beforeEach(module('jobsificator.add-presentation-modal'));
   beforeEach(module('templates'));
   beforeEach(inject(function(_$compile_, _$rootScope_, _$httpBackend_) {
     $httpBackend = _$httpBackend_;
