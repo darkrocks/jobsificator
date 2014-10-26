@@ -20,9 +20,9 @@
       <div class="presentation-viewer-navbar navbar navbar-default">
         <div class="container-fluid">
           <div class="btn-group control-pannel">
-            <button type="button" class="btn btn-default" ng-click="prevSlide()" ng-disabled="prevButtonDisabled"><i class="fa fa-chevron-left"></i></button>
-            <button type="button" class="btn btn-default" ng-click="nextSlide()" ng-disabled="nextButtonDisabled"><i class="fa fa-chevron-right"></i></button>
-            <button type="button" class="btn btn-default" ng-click="toggleFullscreenMode()"><i class="fa fa-arrows-alt"></i></button>
+            <button type="button" class="btn btn-default prev-slide-btn" ng-click="prevSlide()" ng-disabled="prevButtonDisabled"><i class="fa fa-chevron-left"></i></button>
+            <button type="button" class="btn btn-default next-slide-btn" ng-click="nextSlide()" ng-disabled="nextButtonDisabled"><i class="fa fa-chevron-right"></i></button>
+            <button type="button" class="btn btn-default fullscreen-btn" ng-click="toggleFullscreenMode()"><i class="fa fa-arrows-alt"></i></button>
           </div>
           <div class="presentation-name-container"><h4>{{presentation.name}}</h4></div>
           <div class="nav navbar-nav navbar-right">
@@ -38,9 +38,9 @@
 </div>
 
 <div class="btn-group fullscreen-control-panel">
-  <button type="button" class="btn btn-primary" ng-click="prevSlide()" ng-disabled="prevButtonDisabled"><i class=" fa fa-chevron-left"></i></button>
-  <button type="button" class="btn btn-primary" ng-click="nextSlide()" ng-disabled="nextButtonDisabled"><i class=" fa fa-chevron-right"></i></button>
-  <button type="button" class="btn btn-primary" ng-click="toggleFullscreenMode()"><i class="fa fa-arrows-alt"></i></button>
+  <button type="button" class="btn btn-primary prev-slide-btn" ng-click="prevSlide()" ng-disabled="prevButtonDisabled"><i class=" fa fa-chevron-left"></i></button>
+  <button type="button" class="btn btn-primary next-slide-btn" ng-click="nextSlide()" ng-disabled="nextButtonDisabled"><i class=" fa fa-chevron-right"></i></button>
+  <button type="button" class="btn btn-primary fullscreen-btn" ng-click="toggleFullscreenMode()"><i class="fa fa-arrows-alt"></i></button>
   <div class="btn-group control-pannel">
     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
       Slide {{currentSlideNumber}} <span class="caret"></span>
