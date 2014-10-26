@@ -1,5 +1,5 @@
 ﻿
-<div class="presentation-viewer">
+<div data-presentation-id="{{presentation.id}}" class="presentation-viewer">
   <div>
     <div style="float: left;">
       <div>
@@ -8,9 +8,7 @@
             <div style="float: left; margin-left: -15px;">
               {{$index + 1}}
             </div>
-            <div>
-              <svg class="svgcontent presentation-thumbnail" ng-class="{active: (($index + 1)==currentSlideNumber)}" ng-click="setCurrentSlide($index + 1)" width="195" height="110" overflow="visible" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 853 480" ng-bind-html="toTrusted(slide)">
-              </svg>
+            <div class="svg-wrapper" ng-class="{active: (($index + 1)==currentSlideNumber)}" ng-click="setCurrentSlide($index + 1)" ng-bind-html="toTrusted(slide)">
             </div>
           </div>
 
@@ -19,8 +17,8 @@
       </div>
     </div>
     <div style="float: left;">
-      <svg class="svgcontent main-svg" width="853" height="480" overflow="visible" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 853 480">
-      </svg>
+      <div class="main-svg-container">
+      </div>
       <br />
       <div class="presentation-viewer-navbar navbar navbar-default">
         <div class="container-fluid">

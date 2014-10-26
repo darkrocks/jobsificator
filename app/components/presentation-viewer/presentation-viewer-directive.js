@@ -3,12 +3,14 @@
 
 angular.module('presenter.presentation-viewer.presentation-viewer-directive', [])
   .constant('horisontalIndent', 345)
-  .constant('virticalIndent', 130)
+  .constant('virticalIndent', 145)
   .constant('fullscreenHorisontalIndent', 50)
   .constant('fullscreenVirticalIndent', 50)
   .constant('svgAspectRatio', 1.7774)
+  .constant('sideNavbarWidth', 195)
+  .constant('sideNavbarHeight', 110)
   .directive('presentationViewer', [
-    '$sce', 'horisontalIndent', 'virticalIndent', 'fullscreenHorisontalIndent', 'fullscreenVirticalIndent', 'svgAspectRatio', function ($sce, horisontalIndent, virticalIndent, fullscreenHorisontalIndent, fullscreenVirticalIndent, svgAspectRatio) {
+    '$sce', '$timeout', '_', 'horisontalIndent', 'virticalIndent', 'fullscreenHorisontalIndent', 'fullscreenVirticalIndent', 'svgAspectRatio', 'sideNavbarWidth', 'sideNavbarHeight', function($sce, $timeout, _, horisontalIndent, virticalIndent, fullscreenHorisontalIndent, fullscreenVirticalIndent, svgAspectRatio, sideNavbarWidth, sideNavbarHeight) {
       return {
         restrict: 'E',
         templateUrl: 'components/presentation-viewer/presentation-viewer-directive.html',
@@ -16,17 +18,17 @@ angular.module('presenter.presentation-viewer.presentation-viewer-directive', []
           presentation: '=',
           close: '=onClose'
         },
-        link: function (scope, element, attrs) {
-          var $mainSvg = $(element).find('.main-svg');
+        link: function(scope, element, attrs) {
+          var $mainSvgContainer = $(element).find('.main-svg-container');
+          var $navigationSidebar = $(element).find('.navigation-sidebar');
           var $fullscreenControlPanel = $(element).find('.fullscreen-control-panel');
           scope.currentSlideNumber = 1;
           scope.isFullscreenMode = false;
           scope.prevButtonDisabled = false;
           scope.nextButtonDisabled = false;
 
- 
           fitSize();
-          $(window).resize(function () {
+          $(window).resize(function() {
             if (scope.isFullscreenMode) {
               fitSizeFullscreen();
             } else {
@@ -34,10 +36,19 @@ angular.module('presenter.presentation-viewer.presentation-viewer-directive', []
             }
           });
 
-          scope.$watch("presentation", function (n, o) {
+          scope.$watch("presentation", function(n, o) {
             if (scope.presentation && scope.presentation.slides && scope.currentSlideNumber <= scope.presentation.slides.length && scope.currentSlideNumber >= 1) {
               setSlide();
             }
+
+            $timeout(function() {
+              // fit side navbar canvases after rendering
+              var $navSvgs = $navigationSidebar.find('svg');
+              $navSvgs.attr('class', function(index, classNames) {
+                return 'svgcontent presentation-thumbnail';
+              });
+              $navSvgs.css('width', sideNavbarWidth + 'px').css('height', sideNavbarHeight + 'px').attr('width', sideNavbarWidth).attr('height', sideNavbarHeight);
+            });
           }, true);
 
           if (!scope.presentation) {
@@ -53,7 +64,7 @@ angular.module('presenter.presentation-viewer.presentation-viewer-directive', []
 
           setSlide();
 
-          scope.toggleFullscreenMode = function () {
+          scope.toggleFullscreenMode = function() {
             if (scope.isFullscreenMode) {
               stopFullScreenMode();
             } else {
@@ -62,39 +73,41 @@ angular.module('presenter.presentation-viewer.presentation-viewer-directive', []
           };
 
           function startFullScreenMode() {
-            $mainSvg.attr('class', function (index, classNames) {
-              return classNames + ' show-on-fullscreen';
+            // hide/show elements
+            $(".presentation-viewer[data-presentation-id!='" + scope.presentation.id + "']").addClass('hide-on-fullscreen');
+            $('top-menu').addClass('hide-on-fullscreen');
+            $('.main-wrapper').addClass('collapse-on-fullscreen');
+            $('body').addClass('fullscreen-mode');
+
+            var $mainSvg = $(element).find('.main-svg');
+            $mainSvg.attr('class', function(index, classNames) {
+              return classNames + ' show-on-fullscreen show-on-fullscreen-tree';
             });
-
             $fullscreenControlPanel.addClass('show-on-fullscreen');
-            $fullscreenControlPanel.find('*').addClass('show-on-fullscreen');
 
-            $mainSvg.css('position', 'absolute');
-
-            $("*").not('.show-on-fullscreen').addClass('hide-on-fullscreen');
             fullScreenOn();
             fitSizeFullscreen();
             window.scrollTo(0, 0);
 
-            document.onkeydown = function (event) {
-              scope.$apply(function () {
+            document.onkeydown = function(event) {
+              scope.$apply(function() {
                 switch (event.which) {
                   // left
-                  case 37:
-                    // down
-                  case 40:
-                    scope.prevSlide();
-                    break;
-                    // right
-                  case 39:
-                    // up
-                  case 38:
-                    scope.nextSlide();
-                    break;
-                    // esc
-                  case 27:
-                    stopFullScreenMode();
-                    break;
+                case 37:
+                // down
+                case 40:
+                  scope.prevSlide();
+                  break;
+                // right
+                case 39:
+                // up
+                case 38:
+                  scope.nextSlide();
+                  break;
+                // esc
+                case 27:
+                  stopFullScreenMode();
+                  break;
 
                 };
               });
@@ -103,16 +116,18 @@ angular.module('presenter.presentation-viewer.presentation-viewer-directive', []
           };
 
           function stopFullScreenMode() {
-            $mainSvg.attr('class', function (index, classNames) {
-              return classNames.replace('show-on-fullscreen', '');
+            // hide/show elements
+            $(".presentation-viewer").removeClass('hide-on-fullscreen');
+            $('top-menu').removeClass('hide-on-fullscreen');
+            $('.main-wrapper').removeClass('collapse-on-fullscreen');
+            $('body').removeClass('fullscreen-mode');
+
+            var $mainSvg = $(element).find('.main-svg');
+            $mainSvg.attr('class', function(index, classNames) {
+              return classNames.replace(' show-on-fullscreen show-on-fullscreen-tree', '');
             });
-
             $fullscreenControlPanel.removeClass('show-on-fullscreen');
-            $fullscreenControlPanel.find('*').removeClass('show-on-fullscreen');
 
-            $mainSvg.css('position', 'relative');
-
-            $("*").removeClass('hide-on-fullscreen');
             fullScreenOff();
             fitSize();
             window.scrollTo(0, 0);
@@ -147,11 +162,12 @@ angular.module('presenter.presentation-viewer.presentation-viewer-directive', []
             }
           };
 
-          scope.toTrusted = function (html) {
+          // allow angular to render html dinamically
+          scope.toTrusted = function(html) {
             return $sce.trustAsHtml(html);
           };
 
-          scope.nextSlide = function () {
+          scope.nextSlide = function() {
             if (scope.currentSlideNumber + 1 > scope.presentation.slides.length) {
               scope.nextButtonDisabled = true;
               return;
@@ -160,7 +176,7 @@ angular.module('presenter.presentation-viewer.presentation-viewer-directive', []
             setSlide();
           };
 
-          scope.prevSlide = function () {
+          scope.prevSlide = function() {
             if (scope.currentSlideNumber - 1 < 1) {
               scope.prevButtonDisabled = true;
               return;
@@ -169,7 +185,7 @@ angular.module('presenter.presentation-viewer.presentation-viewer-directive', []
             setSlide();
           };
 
-          scope.setCurrentSlide = function (slideNumber) {
+          scope.setCurrentSlide = function(slideNumber) {
             if (slideNumber < 1 || slideNumber > scope.presentation.slides.length) {
               return;
             }
@@ -178,7 +194,7 @@ angular.module('presenter.presentation-viewer.presentation-viewer-directive', []
             setSlide();
           };
 
-          function getSvgSize(hIdent, vIdent) {
+          function calculateSvgSize(hIdent, vIdent) {
             var maxWidth = $(window).width() - hIdent;
             var maxHeight = $(window).height() - vIdent;
 
@@ -197,41 +213,49 @@ angular.module('presenter.presentation-viewer.presentation-viewer-directive', []
           }
 
           function fitSize() {
-            var size = getSvgSize(horisontalIndent, virticalIndent);
-            $mainSvg.width(size.width).height(size.height).css('left', 0).css('top', 0);
+            var size = calculateSvgSize(horisontalIndent, virticalIndent);
+            $(element).find('.main-svg').css('width', size.width + 'px').css('height', size.height + 'px').attr('width', size.width).attr('height', size.height).css('left', 0).css('top', 0);
             var $sidebar = $('.navigation-sidebar');
-            $sidebar.height(size.height + 45);
+            $sidebar.height(size.height + 59);
 
             $(element).find('.presentation-viewer-navbar').width(size.width);
           }
 
           function fitSizeFullscreen() {
-            var size = getSvgSize(fullscreenHorisontalIndent, fullscreenVirticalIndent);
+            var size = calculateSvgSize(fullscreenHorisontalIndent, fullscreenVirticalIndent);
 
             var top = ($(window).height() - size.height) / 2;
             var left = ($(window).width() - size.width) / 2;
-            $mainSvg.width(size.width).height(size.height).css('left', left).css('top', top);
+            $(element).find('.main-svg').width(size.width).height(size.height).css('left', left).css('top', top);
           }
 
           function setSlide() {
-              scope.prevButtonDisabled = false;
-              scope.nextButtonDisabled = false;
+            scope.prevButtonDisabled = false;
+            scope.nextButtonDisabled = false;
 
-              if (scope.currentSlideNumber + 1 > scope.presentation.slides.length) {
-                scope.nextButtonDisabled = true;
-              }
-              if (scope.currentSlideNumber - 1 < 1) {
-                scope.prevButtonDisabled = true;
-              }
+            if (scope.currentSlideNumber + 1 > scope.presentation.slides.length) {
+              scope.nextButtonDisabled = true;
+            }
+            if (scope.currentSlideNumber - 1 < 1) {
+              scope.prevButtonDisabled = true;
+            }
 
-              if (scope.isFullscreenMode) {
-                fitSizeFullscreen();
-              } else {
-                fitSize();
-              }
-              $mainSvg.html(scope.presentation.slides[scope.currentSlideNumber - 1]);
+            $mainSvgContainer.html(scope.presentation.slides[scope.currentSlideNumber - 1]);
+            var $mainSvg = $mainSvgContainer.find('svg');
+            $mainSvg.attr('class', function(index, classNames) {
+              return 'svgcontent main-svg';
+            });
 
+            if (scope.isFullscreenMode) {
+              $mainSvg.attr('class', function(index, classNames) {
+                return classNames + ' show-on-fullscreen show-on-fullscreen-tree';
+              });
+              fitSizeFullscreen();
+            } else {
+              fitSize();
+            }
           }
+
         }
       };
     }

@@ -2,38 +2,47 @@
 body {
   background-color: grey;
 }
-
+body.fullscreen-mode {
+  background-color: white;
+}
 
 .presentation-not-selected-container {
   text-align: center;
 margin-top: 400px;
 color: rgb(217, 217, 217);
-}
-.hide-on-fullscreen {
-  display: flex;
-  visibility: collapse;
-  background-color: white;
+
 }
 
+.show-on-fullscreen-tree *{
+  visibility: visible !important;
+    display: block !important;
+}
 
-.show-on-fullscreen {
-  visibility: visible;
+.show-on-fullscreen{
+  visibility: visible !important;
+    display: block !important;
 }
 
 .main-svg.show-on-fullscreen {
     border-width: 0 !important;
+  position: absolute;
 }
+
+.hide-on-fullscreen {
+  display: none;
+}
+
+.collapse-on-fullscreen {
+    visibility: collapse;
+  margin: 0 !important;
+}
+
 .fullscreen-control-panel {
   position: absolute;
   top: 20px;
   left: 20px;
   display: none;
 }
-
-.fullscreen-control-panel.show-on-fullscreen {
-  display: block;
-}
-
 
 .main-wrapper {
   margin-top: 62px;
@@ -66,9 +75,7 @@ color: rgb(217, 217, 217);
 .presentation-viewer .navbar-right {
   margin-right: 5px !important;
 }
-.presentation-viewer .control-pannel {
-  /*margin-left: 253px;*/
-}
+
 .gridStyle {
   border: 0px solid rgb(212,212,212);
   width: 566px;
@@ -79,14 +86,14 @@ color: rgb(217, 217, 217);
   border-width: 1px;
   border-style: solid;
   border-color: lightgray;
-  margin-bottom: 6px;
+  margin-bottom: 0;
 }
 
 .svgcontent.presentation-thumbnail {
   cursor: pointer;
 }
 
-.svgcontent.presentation-thumbnail.active, .svgcontent.presentation-thumbnail:hover {
+.navigation-sidebar .svg-wrapper.active .svgcontent.presentation-thumbnail, .svgcontent.presentation-thumbnail:hover {
   border: 1px solid #3071a9; 
   border-radius: 4px; 
 }
