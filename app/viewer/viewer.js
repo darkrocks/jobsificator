@@ -19,7 +19,7 @@ angular.module('jobsificator.viewer', ['ngRoute'])
   .controller('ViewerCtrl', [
     '$scope', '_', function($scope, _) {
       $scope.selectedPresentations = [];
-      $scope.addPresentationModalVisible = 1;
+      $scope.addPresentationModalVisible = 0;
 
 
       $scope.addPresentationClick = function() {
@@ -40,6 +40,8 @@ angular.module('jobsificator.viewer', ['ngRoute'])
         $scope.selectedPresentations = _.filter($scope.selectedPresentations, function(presentation) { return presentation.id != id; });
       };
 
-
+      $scope.presentationsModalDataLoaded = function() {
+        $scope.addPresentationModalVisible = 1;
+      };
     }
   ]);

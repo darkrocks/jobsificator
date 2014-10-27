@@ -10,7 +10,7 @@
       </div>
     </div>
   </div>
-  <add-presentation-modal visible="addPresentationModalVisible" selected-presentations="selectedPresentations" on-closed="addPresentationModalClosed()"></add-presentation-modal>
+  <add-presentation-modal visible="addPresentationModalVisible" selected-presentations="selectedPresentations" on-closed="addPresentationModalClosed()" on-data-loaded="presentationsModalDataLoaded()"></add-presentation-modal>
   <div class="modal" id='aboutModal' tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -32,7 +32,7 @@
             <strong>Skype:</strong>
             dmitry.kazinov
             <br />
-            <strong>Technoligies used:</strong>
+            <strong>Technologies used:</strong>
             Nodejs, Angularjs, jQeury, Bootstrap, Underscore, Jasmin, Bower
           </p>
         </div>

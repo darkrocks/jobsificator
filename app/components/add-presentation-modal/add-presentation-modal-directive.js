@@ -8,7 +8,8 @@ angular.module('jobsificator.add-presentation-modal.add-presentation-modal-direc
         scope: {
           visible: '=',
           selectedPresentations: '=',
-          closed: '&onClosed'
+          closed: '&onClosed',
+          dataLoaded: '&onDataLoaded'
         },
         templateUrl: 'components/add-presentation-modal/add-presentation-modal-directive.html',
         link: function(scope, element, attrs) {
@@ -93,6 +94,7 @@ angular.module('jobsificator.add-presentation-modal.add-presentation-modal-direc
 
           presentationsData.getAll().then(function(presentations) {
             scope.gridOptions.data = presentations;
+            scope.dataLoaded();
           }, function(reason) {
             $log.error(reason);
           });
